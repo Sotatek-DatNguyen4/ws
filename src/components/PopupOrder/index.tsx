@@ -107,7 +107,7 @@ export default function PopupOrder(props: PopupOrderProps) {
               <MainContentText>{props.detailText}</MainContentText>
               <PaymentTag method="app">요기요결제</PaymentTag>
             </ContentSectionWrapper>
-          </ContentDetail>
+          </ContentDetail> 
           <LinkDetail>
             <LinkText>자세히</LinkText>
             <ArrowRight />

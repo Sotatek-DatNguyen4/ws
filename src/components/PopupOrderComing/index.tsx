@@ -2,6 +2,7 @@ import React from 'react'
 import PopupHeader from '../PopupHeader'
 import { ArrowRight } from '../ArrowRightIcon'
 import { PaymentTag } from '../PaymentTag'
+import { Triangle } from '../Triangle'
 import styled from 'styled-components'
 
 type PopupOrderComingProps = {
@@ -37,8 +38,6 @@ const MainContent = styled.div`
 const DetailSection = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 14px;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
 `
 const LinkDetail = styled.a`
   display: flex;
@@ -163,28 +162,71 @@ const ButtonSettingTime = styled.button`
   justify-content: center;
   align-item: center;
 `
+const TimeNotiWrapper = styled.div`
+  position: relative;
+  background: #ffcb2e;
+  border-radius: 19px;
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-item: center;
+  margin-top: 28px;
+  margin-bottom: 34px;
+`
+
+const TriangleWrapper = styled.div`
+  position: absolute;
+  bottom: -10px;
+  left: 60%;
+`
+
+const DetailWrapper = styled.div`
+  border-bottom: solid 1px rgba(0, 0, 0, 0.4);
+  padding-bottom: 14px;
+`
+
+const ErrorZone = styled.div`
+  padding: 8px 100px;
+  background: #fef6f4;
+  border-radius: 12px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  marign-bottom: 14px;
+  margin-top: 16px;
+  color: #f04600;
+`
 
 export default function PopupOrderComing(props: PopupOrderComingProps) {
   return (
     <Wrapper>
       <PopupHeader badge={props.badge} title={props.headerTitle} />
       <MainContent>
-        <DetailSection>
-          <ContentDetail>
-            <ContentSectionWrapper>
-              <ContentMethod type={props.type}>배달</ContentMethod>
-              <OrderId>{props.orderId}</OrderId>
-            </ContentSectionWrapper>
-            <ContentSectionWrapper>
-              <MainContentText>{props.detailText}</MainContentText>
-              <PaymentTag method="app">요기요결제</PaymentTag>
-            </ContentSectionWrapper>
-          </ContentDetail>
-          <LinkDetail>
-            <LinkText>자세히</LinkText>
-            <ArrowRight />
-          </LinkDetail>
-        </DetailSection>
+        <DetailWrapper>
+          <DetailSection>
+            <ContentDetail>
+              <ContentSectionWrapper>
+                <ContentMethod type={props.type}>배달</ContentMethod>
+                <OrderId>{props.orderId}</OrderId>
+              </ContentSectionWrapper>
+              <ContentSectionWrapper>
+                <MainContentText>{props.detailText}</MainContentText>
+                <PaymentTag method="app">요기요결제</PaymentTag>
+              </ContentSectionWrapper>
+            </ContentDetail>
+            <LinkDetail>
+              <LinkText>자세히</LinkText>
+              <ArrowRight />
+            </LinkDetail>
+          </DetailSection>
+          {props.orderType === 'error' ? (
+            <ErrorZone>{`배달 대행 접수가 실패했어요.확인 후 다시 시도해주세요.`}</ErrorZone>
+          ) : (
+            <></>
+          )}
+        </DetailWrapper>
         <ConfirmSection>
           {props.orderType === 'direct' ? (
             <ButtonSettingTime>
@@ -199,6 +241,16 @@ export default function PopupOrderComing(props: PopupOrderComingProps) {
               <TimeTextLeft />
               <TimeTextRight>30분 후 배달 완료</TimeTextRight>
             </ButtonSection>
+          ) : (
+            <></>
+          )}
+          {props.orderType === 'timer' ? (
+            <TimeNotiWrapper>
+              <MainContentText>라이더 픽업까지 남은 시간 : 10분</MainContentText>
+              <TriangleWrapper>
+                <Triangle />
+              </TriangleWrapper>
+            </TimeNotiWrapper>
           ) : (
             <></>
           )}

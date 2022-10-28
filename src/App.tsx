@@ -37,6 +37,42 @@ function App() {
         detailUrl="#"
         orderType="direct"
       />
+      <PopupOrderComing
+        badge={5}
+        headerTitle="주문 접수 완료"
+        sideText="영업을 다시 시작합니다."
+        type="express"
+        orderId="#1253"
+        detailText="서초동 | 서초동 | 9,000원"
+        paymentText="요기요결제"
+        paymentMethod="app"
+        detailUrl="#"
+        orderType="timer"
+      />
+      <PopupOrderComing
+        badge={5}
+        headerTitle="주문 접수 완료"
+        sideText="영업을 다시 시작합니다."
+        type="express"
+        orderId="#1253"
+        detailText="서초동 | 서초동 | 9,000원"
+        paymentText="요기요결제"
+        paymentMethod="app"
+        detailUrl="#"
+        orderType=""
+      />
+      <PopupOrderComing
+        badge={5}
+        headerTitle="주문 접수 완료"
+        sideText="영업을 다시 시작합니다."
+        type="express"
+        orderId="#1253"
+        detailText="서초동 | 서초동 | 9,000원"
+        paymentText="요기요결제"
+        paymentMethod="app"
+        detailUrl="#"
+        orderType="error"
+      />
       <PopupOrder
         headerTitle="주문 접수 완료"
         sideText="영업을 다시 시작합니다."
